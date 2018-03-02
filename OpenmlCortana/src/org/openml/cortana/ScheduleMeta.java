@@ -7,7 +7,9 @@ import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.openml.apiconnector.algorithms.Conversion;
 import org.openml.apiconnector.io.OpenmlConnector;
@@ -113,7 +115,9 @@ public class ScheduleMeta {
 	
 	
 	public static void main(String[] args) throws Exception {
-		tasks = connector.taskList("study_17");
+		Map<String, String> filters = new HashMap<String, String>();
+		filters.put("tag", "study_17");
+		tasks = connector.taskList(filters);
 		
 		if (args.length > 0) {
 			if (args[0] == "verbose") {
